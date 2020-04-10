@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 20:38:20 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/09 13:08:38 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/10 14:20:58 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ void	eat(t_phil *philo)
     put_message(FORK, philo);
 	sem_wait(philo->mutex);
 	philo->is_eating = 1;
-    usleep(philo->datos->time_to_eat * 1000);
+   // usleep(philo->datos->time_to_eat * 1000);
     put_message(EAT, philo);
- 	philo->eat_count++;
     philo->last_eat = get_time();
+	usleep(philo->datos->time_to_eat * 1000);
 	philo->limit = philo->last_eat + philo->datos->time_to_die;
     put_message(SLEEP, philo);
     philo->is_eating = 0;
