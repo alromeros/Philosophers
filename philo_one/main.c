@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 10:49:09 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/09 16:31:49 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/10 13:23:37 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void    init_philos(t_utils *data)
         data->filosofo[j].datos = data;
         pthread_create(&tid, NULL, do_things, (void *)&(data->filosofo[j]));
         j++;
-        usleep(100);
+		usleep(100);
     }
     if (data->must_eat_count > 0)
 	{
