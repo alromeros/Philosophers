@@ -6,13 +6,13 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 12:41:02 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 13:40:54 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/10 17:22:31 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int clear_state(t_utils *state)
+void					free_everything(t_utils *state)
 {
 	int		i;
 	char	semaphore[255];
@@ -32,56 +32,52 @@ int clear_state(t_utils *state)
 		}
 		free(state->filosofo);
 	}
-	return (1);
 }
 
-void    init_philos(t_utils *data)
+void					init_philos(t_utils *data)
 {
-    int i;
-    int j;
-    pthread_t   tid;
+	int i;
+	int j;
+	pthread_t   tid;
 
-    char semaphore[250];
-    j = 0;
-    i = data->number_of_philosophers;
-    init_semaphores(data);
-    while (j < i)
-    {
-        data->filosofo[j].is_eating = 0;
-        data->filosofo[j].position = j;
-        data->filosofo[j].eat_count = 0;
-        data->filosofo[j].datos = data;
-        make_semaphore_name(SEMAPHORE_PHILO, (char*)semaphore, j);
-	    data->filosofo[j].mutex = ft_sem_open(semaphore, 1);
+	char semaphore[250];
+	j = 0;
+	i = data->number_of_philosophers;
+	init_semaphores(data);
+	while (j < i)
+	{
+		data->filosofo[j].is_eating = 0;
+		data->filosofo[j].position = j;
+		data->filosofo[j].eat_count = 0;
+		data->filosofo[j].datos = data;
+		make_semaphore_name(SEMAPHORE_PHILO, (char*)semaphore, j);
+		data->filosofo[j].mutex = ft_sem_open(semaphore, 1);
 		make_semaphore_name(SEMAPHORE_PHILOEAT, (char*)semaphore, j);
 		data->filosofo[j].eat_count_m = ft_sem_open(semaphore, 0);
-        pthread_create(&tid, NULL, do_things, (void *)&(data->filosofo[j]));
-        j++;
+		pthread_create(&tid, NULL, do_things, (void *)&(data->filosofo[j]));
+		j++;
 		usleep(100);
-    }
-    if (data->must_eat_count > 0)
-	{
-		pthread_create(&tid, NULL, &monitor_count, (void*)data);
-		pthread_detach(tid);
 	}
-    pthread_detach(tid);
+	if (data->must_eat_count > 0)
+		pthread_create(&tid, NULL, &watchover, (void*)data);
+	pthread_detach(tid);
 }
 
 void parse_params(int argc, char **argv, t_utils *data)
 {
-    data->someone_died = 0;
-    data->must_eat_number = 0;
-    data->number_of_philosophers = ft_atoi(argv[1]);
-    data->time_to_die = ft_atoi(argv[2]);
-    data->time_to_eat = ft_atoi(argv[3]);
-    data->time_to_sleep = ft_atoi(argv[4]);
-    if (argc == 6)
-      data->must_eat_count = ft_atoi(argv[5]);
-    else
-        data->must_eat_count = 0;
-    data->forks_m = (sem_t *)malloc(sizeof(sem_t) * data->number_of_philosophers);
-    data->filosofo = (t_phil *)malloc(sizeof(t_phil) * data->number_of_philosophers);
-    init_philos(data);
+	data->someone_died = 0;
+	data->must_eat_number = 0;
+	data->number_of_philosophers = ft_atoi(argv[1]);
+	data->time_to_die = ft_atoi(argv[2]);
+	data->time_to_eat = ft_atoi(argv[3]);
+	data->time_to_sleep = ft_atoi(argv[4]);
+	if (argc == 6)
+		data->must_eat_count = ft_atoi(argv[5]);
+	else
+		data->must_eat_count = 0;
+	data->forks_m = (sem_t *)malloc(sizeof(sem_t) * data->number_of_philosophers);
+	data->filosofo = (t_phil *)malloc(sizeof(t_phil) * data->number_of_philosophers);
+	init_philos(data);
 }
 
 int main(int argc, char **argv)

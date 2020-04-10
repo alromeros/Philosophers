@@ -6,13 +6,13 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 11:06:45 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/09 16:32:22 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/10 16:57:07 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int     ft_strlen(char const *str)
+int					ft_strlen(char const *str)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ int     ft_strlen(char const *str)
 	return (i);
 }
 
-int     ft_atoi(char const *str)
+int					ft_atoi(char const *str)
 {
 	int	i;
 	int	is_neg;
@@ -32,7 +32,7 @@ int     ft_atoi(char const *str)
 		return (0);
 	i = 0;
 	while (str[i] == '\t' || str[i] == '\n' || str[i] == '\v' ||
-			str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
+	str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
 		i++;
 	is_neg = (str[i] == '-') ? -1 : 1;
 	if (is_neg == -1 || str[i] == '+')
@@ -43,7 +43,7 @@ int     ft_atoi(char const *str)
 	return (res * is_neg);
 }
 
-void	ft_putnbr_fd(unsigned long long n, int fd)
+void				ft_putnbr_fd(unsigned long long n, int fd)
 {
 	char	str[13];
 	int		length;

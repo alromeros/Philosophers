@@ -6,13 +6,13 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 20:41:48 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/09 16:37:13 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/10 17:31:30 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int  init_semaphores(t_utils *state)
+int					init_semaphores(t_utils *state)
 {
 	state->forks_m = ft_sem_open(SEMAPHORE_FORK, state->number_of_philosophers);
 	state->write = ft_sem_open(SEMAPHORE_WRITE, 1);
@@ -20,13 +20,13 @@ int  init_semaphores(t_utils *state)
 	return (0);
 }
 
-sem_t   *ft_sem_open(char const *name, int value)
+sem_t				*ft_sem_open(char const *name, int value)
 {
 	sem_unlink(name);
 	return (sem_open(name, O_CREAT | O_EXCL, 0644, value));
 }
 
-char    *make_semaphore_name(char const *base, char *buffer, int position)
+char				*make_semaphore_name(char const *base, char *buffer, int position)
 {
 	int	i;
 

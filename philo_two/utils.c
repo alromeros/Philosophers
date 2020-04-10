@@ -6,13 +6,13 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 12:50:48 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/09 16:35:20 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/10 17:32:32 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int     ft_strlen(char const *str)
+int					ft_strlen(char const *str)
 {
 	int	i;
 
@@ -22,7 +22,7 @@ int     ft_strlen(char const *str)
 	return (i);
 }
 
-int     ft_atoi(char const *str)
+int					ft_atoi(char const *str)
 {
 	int	i;
 	int	is_neg;
@@ -43,7 +43,7 @@ int     ft_atoi(char const *str)
 	return (res * is_neg);
 }
 
-void	ft_putnbr_fd(unsigned long long n, int fd)
+void				ft_putnbr_fd(unsigned long long n, int fd)
 {
 	char	str[13];
 	int		length;
@@ -70,7 +70,7 @@ unsigned long long	get_time(void)
 	return ((tv.tv_sec * (unsigned long long)1000) + (tv.tv_usec / 1000));
 }
 
-int	ft_strcpy(char *dst, const char *src)
+int					ft_strcpy(char *dst, const char *src)
 {
 	int	i;
 
