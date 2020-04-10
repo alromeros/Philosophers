@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 10:49:51 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 17:50:31 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/10 18:16:03 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,8 @@ typedef struct				s_phil
 	struct s_utils			*datos;
 	pthread_mutex_t			mutex;
 	pthread_mutex_t			number_eat;
-	pthread_mutex_t 		eat_m;
+	pthread_mutex_t			eat_m;
 }							t_phil;
-
 typedef struct				s_utils
 {
 	int						number_of_philosophers;

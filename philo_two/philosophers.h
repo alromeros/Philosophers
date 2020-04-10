@@ -6,12 +6,12 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 12:51:22 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 18:06:47 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/10 18:19:53 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHERS_H
-#define PHILOSOPHERS_H
+# define PHILOSOPHERS_H
 
 # include <sys/time.h>
 # include <unistd.h>

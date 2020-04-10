@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 20:50:46 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 17:57:15 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/10 18:18:55 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ sem_t				*ft_sem_open(char const *name, int value)
 	return (sem_open(name, O_CREAT | O_EXCL, 0644, value));
 }
 
-char				*make_semaphore_name
-(char const *base, char *buffer, int position)
+char				*make_semaphore_name(char const *base,
+char *buffer, int position)
 {
 	int	i;
 

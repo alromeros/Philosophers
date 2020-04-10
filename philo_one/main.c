@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 10:49:09 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 17:47:16 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/10 18:16:41 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void			init_philos(t_utils *data)
 {
-	int 		j;
-	pthread_t   tid;
+	int			j;
+	pthread_t	tid;
 
 	j = 0;
 	pthread_mutex_init(&data->dead, NULL);
@@ -39,7 +39,7 @@ void			init_philos(t_utils *data)
 void			parse_params(int argc, char **argv, t_utils *data)
 {
 	int i;
-	
+
 	i = 0;
 	data->someone_died = 0;
 	data->must_eat_number = 0;

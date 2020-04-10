@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 12:41:02 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 17:54:36 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/10 18:19:07 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void					free_everything(t_utils *state)
 void					init_philos(t_utils *data)
 {
 	int			i;
-	int		 	j;
+	int			j;
 	char		semaphore[255];
 	pthread_t	tid;
 
