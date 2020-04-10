@@ -6,18 +6,17 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 10:49:51 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 16:54:07 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/10 17:50:31 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHERS_H
-#define PHILOSOPHERS_H
-
-#include <sys/time.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <pthread.h>
+# define PHILOSOPHERS_H
+# include <sys/time.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <pthread.h>
 # define EAT 	0
 # define SLEEP 1
 # define FORK 	2
@@ -42,9 +41,10 @@ typedef struct				s_phil
 	pthread_mutex_t			number_eat;
 	pthread_mutex_t 		eat_m;
 }							t_phil;
+
 typedef struct				s_utils
 {
-	int                 	number_of_philosophers;
+	int						number_of_philosophers;
 	unsigned long long		time_to_die;
 	unsigned long long		time_to_eat;
 	unsigned long long		time_to_sleep;
@@ -53,12 +53,12 @@ typedef struct				s_utils
 	int						someone_died;
 	t_phil					*filosofo;
 	pthread_mutex_t			*forks_m;
-	pthread_mutex_t 		write;
+	pthread_mutex_t			write;
 	pthread_mutex_t			wait;
 	pthread_mutex_t			dead;
 	unsigned long long		start;
 
-}               t_utils;
+}							t_utils;
 void						put_message(int preset, t_phil *philo);
 void						*monitor(void *philos);
 void						*do_things(void *philos);

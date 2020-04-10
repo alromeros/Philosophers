@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 20:39:46 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 17:20:25 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/10 18:01:44 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void					put_message(int preset, t_phil *philo)
 		else if (preset == DIED)
 			write(1, " died\n", 6);
 		else if (preset == FORK)
-			write (1, " has taken a fork\n", 18);
+			write(1, " has taken a fork\n", 18);
 	}
 	if (preset != DIED && preset != OVER)
 		sem_post(philo->datos->write);
@@ -82,16 +82,16 @@ void					*monitor(void *philos)
 	return ((void *)0);
 }
 
-void    *do_things(void *philos)
+void					*do_things(void *philos)
 {
-	t_phil *copy;
-	pthread_t tid;
+	t_phil		*copy;
+	pthread_t	tid;
 
 	copy = (t_phil *)philos;
 	copy->last_eat = get_time();
 	copy->limit = copy->last_eat + copy->datos->time_to_die;
 	if (pthread_create(&tid, NULL, monitor, copy) != 0)
-		return ((void *) 1);
+		return ((void *)1);
 	copy->datos->start = get_time();
 	while (!copy->datos->someone_died)
 	{

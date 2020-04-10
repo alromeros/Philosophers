@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 20:52:27 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 17:03:58 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/10 17:51:56 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int					start_process(t_utils *state)
 
 void				*do_things(void *philos)
 {
-	t_phil *copy;
-	pthread_t tid;
+	t_phil		*copy;
+	pthread_t	tid;
 
 	copy = (t_phil *)philos;
 	copy->last_eat = get_time();
@@ -62,7 +62,8 @@ void				*monitor(void *philos)
 	while (!copy->datos->someone_died)
 	{
 		sem_wait(copy->mutex);
-		if (!copy->is_eating && get_time() > copy->limit && !copy->datos->someone_died)
+		if (!copy->is_eating && get_time() > 
+		copy->limit && !copy->datos->someone_died)
 		{
 			put_message(DIED, philos);
 			copy->datos->someone_died = 1;
@@ -76,7 +77,7 @@ void				*monitor(void *philos)
 	return ((void *)0);
 }
 
-void				*monitor_count(void *state_v)
+void				*watchover(void *state_v)
 {
 	t_utils *state;
 	int		i;
@@ -119,7 +120,7 @@ void				put_message(int preset, t_phil *philo)
 		else if (preset == DIED)
 			write(1, " died\n", 6);
 		else if (preset == FORK)
-			write (1, " has taken a fork\n", 18);
+			write(1, " has taken a fork\n", 18);
 	}
 	if (preset != DIED && preset != OVER)
 		sem_post(philo->datos->write_m);

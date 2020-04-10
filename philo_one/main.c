@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 10:49:09 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 16:48:47 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/10 17:47:16 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void			init_philos(t_utils *data)
 {
-	int j;
-
+	int 		j;
 	pthread_t   tid;
+
 	j = 0;
 	pthread_mutex_init(&data->dead, NULL);
 	pthread_mutex_lock(&data->dead);
@@ -38,20 +38,20 @@ void			init_philos(t_utils *data)
 
 void			parse_params(int argc, char **argv, t_utils *data)
 {
-	int i = 0;
-
+	int i;
+	
+	i = 0;
 	data->someone_died = 0;
 	data->must_eat_number = 0;
 	data->number_of_philosophers = ft_atoi(argv[1]);
 	data->time_to_die = ft_atoi(argv[2]);
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
-	if (argc == 6)
-		data->must_eat_count = ft_atoi(argv[5]);
-	else
-		data->must_eat_count = 0;
-	data->forks_m = (pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * data->number_of_philosophers);
-	data->filosofo = (t_phil *)malloc(sizeof(t_phil) * data->number_of_philosophers);
+	data->must_eat_count = (argc == 6) ? ft_atoi(argv[5]) : 0;
+	data->forks_m = (pthread_mutex_t *)
+	malloc(sizeof(pthread_mutex_t) * data->number_of_philosophers);
+	data->filosofo = (t_phil *)
+	malloc(sizeof(t_phil) * data->number_of_philosophers);
 	while (i < data->number_of_philosophers)
 	{
 		pthread_mutex_init(&(data->forks_m[i]), NULL);

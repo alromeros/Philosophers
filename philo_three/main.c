@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 12:41:02 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 17:09:04 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/10 17:54:36 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,10 @@ void					free_everything(t_utils *state)
 
 void					init_philos(t_utils *data)
 {
-	int i;
-	int j;
-	char semaphore[255];
-	pthread_t   tid;
+	int			i;
+	int		 	j;
+	char		semaphore[255];
+	pthread_t	tid;
 
 	j = 0;
 	i = data->number_of_philosophers;
@@ -62,7 +62,7 @@ void					init_philos(t_utils *data)
 	}
 	start_process(data);
 	if (data->must_eat_count > 0)
-		pthread_create(&tid, NULL, &monitor_count, (void*)data);
+		pthread_create(&tid, NULL, &watchover, (void*)data);
 	pthread_detach(tid);
 }
 
@@ -75,15 +75,17 @@ void					parse_params(int argc, char **argv, t_utils *data)
 	data->time_to_eat = ft_atoi(argv[3]);
 	data->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
-	data->must_eat_count = ft_atoi(argv[5]);
+		data->must_eat_count = ft_atoi(argv[5]);
 	else
-	data->must_eat_count = 0;
-	data->forks_m = (sem_t *)malloc(sizeof(sem_t) * data->number_of_philosophers);
-	data->filosofo = (t_phil *)malloc(sizeof(t_phil) * data->number_of_philosophers);
+		data->must_eat_count = 0;
+	data->forks_m = (sem_t *)
+	malloc(sizeof(sem_t) * data->number_of_philosophers);
+	data->filosofo = (t_phil *)
+	malloc(sizeof(t_phil) * data->number_of_philosophers);
 	init_philos(data);
 }
 
-int main(int argc, char **argv)
+int						main(int argc, char **argv)
 {
 	t_utils *data;
 
