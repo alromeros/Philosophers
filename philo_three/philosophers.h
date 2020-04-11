@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 12:51:22 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/11 20:24:22 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/11 20:35:36 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void						drop_forks(t_phil *copy);
 void						eat(t_phil *philo);
 void						init_semaphores(t_utils *state);
 sem_t						*ft_sem_open(char const *name, int value);
-char						*make_semaphore_name
+char						*semaphore_namer
 (char const *base, char *buffer, int position);
 
 #endif

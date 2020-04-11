@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 20:50:46 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/11 20:12:21 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/11 20:40:25 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void				init_semaphores(t_utils *state)
 {
-	state->forks_m = ft_sem_open(SEMAPHORE_FORK, state->number_of_philosophers);
-	state->write = ft_sem_open(SEMAPHORE_WRITE, 1);
-	state->dead = ft_sem_open(SEMAPHORE_DEAD, 0);
-	state->write_m = ft_sem_open(SEMAPHORE_DEADW, 1);
+	state->forks_m = ft_sem_open(SEM_FORK, state->number_of_philosophers);
+	state->write = ft_sem_open(SEM_WRITE, 1);
+	state->dead = ft_sem_open(SEM_DEAD, 0);
+	state->write_m = ft_sem_open(SEM_DEADW, 1);
 }
 
 sem_t				*ft_sem_open(char const *name, int value)

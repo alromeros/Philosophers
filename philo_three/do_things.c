@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 20:52:27 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/11 20:23:19 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/11 20:56:57 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int					fork_init(t_utils *state)
 {
 	int			i;
 
-	//state->start = get_time();
 	i = 0;
 	while (i < state->number_of_philosophers)
 	{

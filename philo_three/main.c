@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 12:41:02 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/11 20:25:08 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/11 20:44:34 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void					free_everything(t_utils *state)
 		i = 0;
 		while (i < state->number_of_philosophers)
 		{
-			make_semaphore_name(SEM_PHILO, (char*)semaphore, i);
+			semaphore_namer(SEM_PHILO, (char*)semaphore, i);
 			sem_unlink(semaphore);
-			make_semaphore_name(SEM_PHILOEAT, (char*)semaphore, i++);
+			semaphore_namer(SEM_PHILOEAT, (char*)semaphore, i++);
 			sem_unlink(semaphore);
 		}
 		free(state->filosofo);
@@ -40,15 +40,13 @@ void					free_everything(t_utils *state)
 
 void					init_philos(t_utils *data)
 {
-	int			i;
 	int			j;
 	char		semaphore[255];
 	pthread_t	tid;
 
 	j = 0;
-	i = data->number_of_philosophers;
 	init_semaphores(data);
-	while (j < i)
+	while (j < data->number_of_philosophers)
 	{
 		data->filosofo[j].is_eating = 0;
 		data->filosofo[j].position = j;
@@ -63,8 +61,10 @@ void					init_philos(t_utils *data)
 	}
 	fork_init(data);
 	if (data->must_eat_count > 0)
+	{
 		pthread_create(&tid, NULL, &watchover, (void*)data);
-	pthread_detach(tid);
+		pthread_detach(tid);
+	}
 }
 
 void					parse_params(int argc, char **argv, t_utils *data)
