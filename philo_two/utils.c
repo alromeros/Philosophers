@@ -6,21 +6,11 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 12:50:48 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 17:32:32 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/11 15:39:50 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
-
-int					ft_strlen(char const *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
-}
 
 int					ft_atoi(char const *str)
 {
@@ -64,22 +54,9 @@ void				ft_putnbr_fd(unsigned long long n, int fd)
 
 unsigned long long	get_time(void)
 {
-	static struct timeval	tv;
+	static struct timeval	tiempo;
 
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * (unsigned long long)1000) + (tv.tv_usec / 1000));
-}
-
-int					ft_strcpy(char *dst, const char *src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = 0;
-	return (i);
+	gettimeofday(&tiempo, NULL);
+	return ((tiempo.tv_sec * (unsigned long long)1000)
+	+ (tiempo.tv_usec / 1000));
 }

@@ -6,17 +6,17 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 20:52:27 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 18:17:25 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/11 20:23:19 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int					start_process(t_utils *state)
+int					fork_init(t_utils *state)
 {
 	int			i;
 
-	state->start = get_time();
+	//state->start = get_time();
 	i = 0;
 	while (i < state->number_of_philosophers)
 	{

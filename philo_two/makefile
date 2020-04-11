@@ -6,11 +6,11 @@
 #    By: alromero <alromero@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/04/07 17:00:33 by alromero          #+#    #+#              #
-#    Updated: 2020/04/09 16:34:10 by alromero         ###   ########.fr        #
+#    Updated: 2020/04/11 14:56:39 by alromero         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = main.c utils.c eat.c do_things.c semaphores.c
+SRC = main.c utils.c eat.c do_things.c
 
 OBJS			= $(SRC:.c=.o)
 

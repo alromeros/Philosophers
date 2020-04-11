@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 12:50:48 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 17:16:41 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/11 20:09:51 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,13 @@ void				ft_putnbr_fd(unsigned long long n, int fd)
 
 unsigned long long	get_time(void)
 {
-	static struct timeval	tv;
+	static struct timeval	time;
 
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * (unsigned long long)1000) + (tv.tv_usec / 1000));
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * (unsigned long long)1000) + (time.tv_usec / 1000));
 }
 
-int					ft_strcpy(char *dst, const char *src)
+void				ft_strcpy(char *dst, const char *src)
 {
 	int	i;
 
@@ -81,5 +81,4 @@ int					ft_strcpy(char *dst, const char *src)
 		i++;
 	}
 	dst[i] = 0;
-	return (i);
 }
