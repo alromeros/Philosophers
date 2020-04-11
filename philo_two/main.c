@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 12:41:02 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 18:03:50 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/11 21:10:12 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,5 @@ int						main(int argc, char **argv)
 	parse_params(argc, argv, data);
 	sem_wait(data->dead);
 	if (data->someone_died)
-		clear_state(data);
+		free_everything(data);
 }
