@@ -6,37 +6,31 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 12:41:02 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/11 14:56:30 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/10 18:03:50 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void				init_semaphores(t_utils *state)
-{
-	sem_init(&(state->forks_m), 0,  state->number_of_philosophers);
-	sem_init(&(state->write), 0, 1);
-	sem_init(&(state->dead), 0, 0);
-}
-
 void					free_everything(t_utils *state)
 {
 	int		i;
+	char	semaphore[255];
 
-	sem_destroy(&state->forks_m);;
-	sem_destroy(&state->write);
-	sem_destroy(&state->dead);
+	sem_unlink(SEMAPHORE_FORK);
+	sem_unlink(SEMAPHORE_WRITE);
+	sem_unlink(SEMAPHORE_DEAD);
 	if (state->filosofo)
 	{
 		i = 0;
 		while (i < state->number_of_philosophers)
 		{
-			sem_destroy(&state->filosofo[i].mutex);
-			sem_destroy(&state->filosofo[i].eat_count_m);
-			i++;
+			make_semaphore_name(SEMAPHORE_PHILO, (char*)semaphore, i);
+			sem_unlink(semaphore);
+			make_semaphore_name(SEMAPHORE_PHILOEAT, (char*)semaphore, i++);
+			sem_unlink(semaphore);
 		}
 		free(state->filosofo);
-		free(state);
 	}
 }
 
@@ -45,6 +39,7 @@ void					init_philos(t_utils *data)
 	int				i;
 	int				j;
 	pthread_t		tid;
+	char			semaphore[250];
 
 	j = 0;
 	i = data->number_of_philosophers;
@@ -55,8 +50,10 @@ void					init_philos(t_utils *data)
 		data->filosofo[j].position = j;
 		data->filosofo[j].eat_count = 0;
 		data->filosofo[j].datos = data;
-		sem_init(&(data->filosofo[j].mutex), 0, 1);
-		sem_init(&(data->filosofo[j].eat_count_m), 0, 0);
+		make_semaphore_name(SEMAPHORE_PHILO, (char*)semaphore, j);
+		data->filosofo[j].mutex = ft_sem_open(semaphore, 1);
+		make_semaphore_name(SEMAPHORE_PHILOEAT, (char*)semaphore, j);
+		data->filosofo[j].eat_count_m = ft_sem_open(semaphore, 0);
 		pthread_create(&tid, NULL, do_things, (void *)&(data->filosofo[j]));
 		j++;
 		usleep(100);
@@ -78,6 +75,8 @@ void					parse_params(int argc, char **argv, t_utils *data)
 		data->must_eat_count = ft_atoi(argv[5]);
 	else
 		data->must_eat_count = 0;
+	data->forks_m = (sem_t *)
+	malloc(sizeof(sem_t) * data->number_of_philosophers);
 	data->filosofo = (t_phil *)
 	malloc(sizeof(t_phil) * data->number_of_philosophers);
 	init_philos(data);
@@ -92,7 +91,7 @@ int						main(int argc, char **argv)
 	if (argc != 5 && argc != 6)
 		return (write(1, "Error: Invalid arguments\n", 25));
 	parse_params(argc, argv, data);
-	sem_wait(&data->dead);
+	sem_wait(data->dead);
 	if (data->someone_died)
-		free_everything(data);
+		clear_state(data);
 }
