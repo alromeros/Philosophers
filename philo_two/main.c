@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/06 12:41:02 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/11 21:10:12 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/25 14:46:12 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void					free_everything(t_utils *state)
 	sem_unlink(SEMAPHORE_FORK);
 	sem_unlink(SEMAPHORE_WRITE);
 	sem_unlink(SEMAPHORE_DEAD);
+	sem_unlink(SEMAPHORE_MONITOR);
 	if (state->filosofo)
 	{
 		i = 0;

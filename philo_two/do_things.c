@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 20:39:46 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 18:19:35 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/25 14:48:58 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,19 @@ void					*monitor(void *philos)
 	while (!copy->datos->someone_died)
 	{
 		sem_wait(copy->mutex);
+		sem_wait(copy->datos->monitor);
 		if (!copy->is_eating && get_time() >
 		copy->limit && !copy->datos->someone_died)
 		{
 			put_message(DIED, philos);
 			copy->datos->someone_died = 1;
 			sem_post(copy->mutex);
+			sem_post(copy->datos->monitor);
 			sem_post(copy->datos->dead);
 			return (NULL);
 		}
 		sem_post(copy->mutex);
-		usleep(1000);
+		sem_post(copy->datos->monitor);
 	}
 	return ((void *)0);
 }

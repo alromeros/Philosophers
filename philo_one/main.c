@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 10:49:09 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 18:16:41 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/25 14:09:55 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void			init_philos(t_utils *data)
 	j = 0;
 	pthread_mutex_init(&data->dead, NULL);
 	pthread_mutex_lock(&data->dead);
+	pthread_mutex_init(&data->monitor, NULL);
 	while (j < data->number_of_philosophers)
 	{
 		data->filosofo[j].is_eating = 0;
@@ -79,6 +80,7 @@ void			free_everything(t_utils *data)
 		}
 		pthread_mutex_destroy(&data->write);
 		pthread_mutex_destroy(&data->dead);
+		pthread_mutex_destroy(&data->monitor);
 		free(data->filosofo);
 		free(data->forks_m);
 		free(data);

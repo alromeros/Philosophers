@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 20:41:48 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 18:20:43 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/25 14:46:55 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int					init_semaphores(t_utils *state)
 	state->forks_m = ft_sem_open(SEMAPHORE_FORK, state->number_of_philosophers);
 	state->write = ft_sem_open(SEMAPHORE_WRITE, 1);
 	state->dead = ft_sem_open(SEMAPHORE_DEAD, 0);
+	state->monitor = ft_sem_open(SEMAPHORE_MONITOR, 1);
 	return (0);
 }
 

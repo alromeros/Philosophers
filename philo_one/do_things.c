@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/08 18:18:29 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 17:36:30 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/25 14:42:58 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,19 @@ void			*monitor(void *philos)
 	while (!copy->datos->someone_died)
 	{
 		pthread_mutex_lock(&copy->mutex);
+		pthread_mutex_lock(&copy->datos->monitor);
 		if ((!copy->is_eating) &&
 		(get_time() > copy->limit) && !copy->datos->someone_died)
 		{
 			put_message(DIED, philos);
 			copy->datos->someone_died = 1;
 			pthread_mutex_unlock(&copy->mutex);
+			pthread_mutex_unlock(&copy->datos->monitor);
 			pthread_mutex_unlock(&copy->datos->dead);
 			return (NULL);
 		}
 		pthread_mutex_unlock(&copy->mutex);
-		usleep(1000);
+		pthread_mutex_unlock(&copy->datos->monitor);
 	}
 	return (void *)(0);
 }

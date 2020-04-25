@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/30 12:51:22 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 18:19:53 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/25 14:44:58 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define SEMAPHORE_DEAD		"Dead"
 # define SEMAPHORE_PHILO	"Philo"
 # define SEMAPHORE_PHILOEAT	"Eat"
+# define SEMAPHORE_MONITOR	"Monitor"
 
 int							ft_strlen(char const *str);
 int							ft_atoi(char const *str);
@@ -66,6 +67,7 @@ typedef struct				s_utils
 	sem_t					*forks_m;
 	sem_t					*write;
 	sem_t					*dead;
+	sem_t					*monitor;
 	unsigned long long		start;
 }							t_utils;
 void						put_message(int preset, t_phil *philo);

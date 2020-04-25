@@ -6,7 +6,7 @@
 /*   By: alromero <alromero@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 10:49:51 by alromero          #+#    #+#             */
-/*   Updated: 2020/04/10 18:16:03 by alromero         ###   ########.fr       */
+/*   Updated: 2020/04/25 13:58:53 by alromero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct				s_utils
 	pthread_mutex_t			write;
 	pthread_mutex_t			wait;
 	pthread_mutex_t			dead;
+	pthread_mutex_t			monitor;
 	unsigned long long		start;
 
 }							t_utils;
