@@ -2,7 +2,7 @@
 
 ## Descripción
 
-Con este proyecto se pretende recrear en C el problema de la cena de los filósofos, un ejercicio clásico de computación paralela muy documentado. En cada una de las tres implementaciones se deben cumplir unos requisitos concretos con respecto a la concurrencia, ya sea con hilos *POSIX* y mutexes, hilos y semáforos o con *forks*.
+Tres implementaciones en C del problema de la cena de los filósofos. En cada una de las implementaciones se deben cumplir unos requisitos concretos con respecto a la concurrencia, ya sea con hilos *POSIX* y mutexes, hilos y semáforos o con *forks*.
 
 ## Documentación
 
